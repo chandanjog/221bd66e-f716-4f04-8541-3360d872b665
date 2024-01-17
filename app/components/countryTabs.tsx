@@ -75,7 +75,7 @@ export default function CountryTabs() {
         <div className="w-auto">
             <Tab.Group>
                 <Tab.List className="flex flex-row items-start text-black gap-4 mx-4 border-gray-200 border-b-2">
-                    {Object.keys(groupedData).map(region => (
+                    {Object.keys(groupedData).sort().filter(x => x !== '').map(region => (
                         <Tab key={region} as={Fragment}>
                             {({selected}) => (
                                 <div
@@ -87,7 +87,7 @@ export default function CountryTabs() {
                     ))}
                 </Tab.List>
                 <Tab.Panels className="text-black m-4">
-                    {Object.entries(groupedData).map(([region, countries]) => (
+                    {Object.entries(groupedData).sort().filter(x => x[0] !== '').map(([region, countries]) => (
                         <Tab.Panel key={region}>
                             <ul className="grid grid-cols-4 gap-4">
                                 {countries.map(country => (
