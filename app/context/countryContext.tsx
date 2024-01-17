@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import { CountryData } from "@/app/components/countryTabs";
 
-export const CountryContextData = React.createContext<{
+type CountryContextDataType = {
     country: CountryData;
     setCountry: React.Dispatch<React.SetStateAction<CountryData>>;
-}>(undefined);
+}
+export const CountryContextData = React.createContext<CountryContextDataType>({} as CountryContextDataType);
 
-export function CountryContext({ children }) {
-    const [country, setCountry] = useState<CountryData>({});
+type CountryContextProps = {
+    children: React.ReactNode
+}
+export function CountryContext({ children } :CountryContextProps) {
+    const [country, setCountry] = useState<CountryData>({} as CountryData);
 
     return (
         <CountryContextData.Provider value={{ country, setCountry }}>
